@@ -15,8 +15,11 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+    it('should return API Name and Version"', () => {
+      expect(appController.getHealth()).toStrictEqual({
+        name: 'mutants-api',
+        version: 'v0.0.1',
+      });
     });
   });
 });

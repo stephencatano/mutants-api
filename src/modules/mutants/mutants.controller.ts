@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Headers, Response } from '@nestjs/common';
+import { Body, Controller, Post, Headers, Res } from '@nestjs/common';
 
 import { LoggerService } from '@shared/logger/logger.service';
 import { SERVICE_ERROR } from '@config/errors.enum';
@@ -15,7 +15,7 @@ export class MutantsController extends LoggerService {
   async validateDnaCode(
     @Headers('trace_id') traceId: string,
     @Body() dnaCode: DnaCodeDTO,
-    @Response() response,
+    @Res() response,
   ): Promise<any> {
     try {
       const { isMutant }: MutantResponseDTO =
@@ -27,7 +27,9 @@ export class MutantsController extends LoggerService {
     } catch (error) {
       const errorArray = [];
       errorArray.push({
-        origin: `${SERVICE_ERROR.MUTANTS_API}_VALIDATE_DNA_CODE`,
+        origin: `${
+          SERVICE_ERROR.MUTANTS_API
+        }_${MutantsController.name.toUpperCase()}_VALIDATE_DNA_CODE`,
         trace_id: traceId,
         message: error.message,
       });
