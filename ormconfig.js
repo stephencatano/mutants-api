@@ -4,9 +4,11 @@ const {
   db_postgres_mutantsdb_name: DB_NAME,
   db_postgres_mutantsdb_host: HOST,
   db_postgres_mutantsdb_port: PORT,
+  DATABASE_URL,
 } = process.env;
 module.exports = {
   type: 'postgres',
+  url: DATABASE_URL,
   host: HOST,
   port: parseInt(PORT),
   username: USER,
@@ -23,5 +25,8 @@ module.exports = {
   cli: {
     entitiesDir: 'src/database/models',
     migrationsDir: 'src/database/migrations',
+  },
+  ssl: {
+    rejectUnauthorized: false,
   },
 };

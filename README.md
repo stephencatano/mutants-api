@@ -35,6 +35,13 @@ $ npm install
 ## Running the app
 
 ```bash
+# In local is necessary to comment SSL encryption and DATABASE_URL variable for Database in ORMConfig.js
+# // url: DATABASE_URL,
+
+# // ssl: {
+# //   rejectUnauthorized: false,
+# // },
+
 # set the .env with your environment variables
 # after that run migrations with the command
 $ npm run migrate
@@ -47,6 +54,34 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
+
+# this API is deployed in Heroku, you can test the application with the following cURLs
+
+# healthcheck
+$ curl --location 'https://app-mutants-api-0b7cb38c0b33.herokuapp.com/health' \
+--header 'trace_id: traceId'
+
+# stats
+$ curl --location 'https://app-mutants-api-0b7cb38c0b33.herokuapp.com/stats' \
+--header 'trace_id: traceId'
+
+# mutant
+$ curl --location 'https://app-mutants-api-0b7cb38c0b33.herokuapp.com/mutant' \
+--header 'trace_id: traceId' \
+--header 'Content-Type: application/json' \
+--data '{
+    "dna": ["AAAAAA","AAAAAA","AAAAAA","AAAAAA","AAAAAA","AAAAAA"]
+}'
+
+# mutant's examples
+$ ["AAAAAA","CAGTGC","TTATTT","AGACGG","GCGTCA","TCACTG"]
+$ ["ATGCGA","ATGCGA","ATGCGA","AGACGG","GCGTCA","TCACTG"]
+$ ["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"]
+
+# human's examples
+$ ["ATGCGA","CAGTGC","TTATTT","AGACGG","GCGTCA","TTACTG"]
+$ ["ATGCGA","CAGTGC","TTATTT","AGACGG","GCGTCA","TCACTA"]
+$ ["ATGCGA","CAGTGC","TTATTT","AGACGG","GCGTCA","TCACTG"]
 ```
 
 ## Test
@@ -65,6 +100,9 @@ $ npm run test:cov
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+
+## Made with Love :hearts:
+- by Stephen Cataño | [LinkedIn](https://www.linkedin.com/in/stephen-catano/) & [GitHub](https://github.com/stephencatano)
 
 ## Stay in touch
 
