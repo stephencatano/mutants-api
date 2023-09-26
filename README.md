@@ -35,6 +35,10 @@ $ npm install
 ## Running the app
 
 ```bash
+# set the .env with your environment variables
+# after that run migrations with the command
+$ npm run migrate
+
 # development
 $ npm run start
 
