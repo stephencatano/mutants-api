@@ -16,10 +16,10 @@ export class MutantsController extends LoggerService {
     @Headers('trace_id') traceId: string,
     @Body() dnaCode: DnaCodeDTO,
     @Res() response,
-  ): Promise<any> {
+  ): Promise<MutantResponseDTO> {
     try {
-      const { isMutant }: MutantResponseDTO =
-        this.mutantsService.validateDnaCode(dnaCode);
+      const isMutant: boolean =
+        await this.mutantsService.validateDnaCode(dnaCode);
 
       return isMutant
         ? response.status(200).json({ isMutant })

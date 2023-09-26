@@ -19,7 +19,7 @@ module.exports = {
   moduleNameMapper: {
     '@shared/(.*)': '<rootDir>/shared/$1',
     '@modules/(.*)': '<rootDir>/modules/$1',
-    // '@entities/(.*)': '<rootDir>/entities/$1',
+    '@entities/(.*)': '<rootDir>/database/models/$1',
     '@config/(.*)': '<rootDir>/config/$1',
   },
 };

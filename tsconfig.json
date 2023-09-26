@@ -20,6 +20,7 @@
     "paths": {
       "@shared/*": ["src/shared/*"],
       "@modules/*": ["src/modules/*"],
+      "@entities/*": ["src/database/models/*"],
       "@config/*": ["src/config/*"]
     },
   }

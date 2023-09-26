@@ -1,18 +1,23 @@
 import { Injectable } from '@nestjs/common';
 
 import { LoggerService } from '@shared/logger/logger.service';
-import { DnaCodeDTO, MutantResponseDTO } from './mutants.dto';
+import { DnaCodeDTO } from './mutants.dto';
+import { StatsService } from '@modules/stats/stats.service';
 
 @Injectable()
 export class MutantsService extends LoggerService {
-  validateDnaCode(dnaCode: DnaCodeDTO): MutantResponseDTO {
+  constructor(private readonly statsService: StatsService) {
+    super(MutantsService.name);
+  }
+  async validateDnaCode(dnaCode: DnaCodeDTO): Promise<boolean> {
     this.logger.log(`Validating DNA Code: ${JSON.stringify(dnaCode)}`);
 
     const dnaMatrix = dnaCode.dna.map((row) => row.split(''));
+    const isMutant = this.hasMutantSequence(dnaMatrix);
 
-    return this.hasMutantSequence(dnaMatrix)
-      ? { isMutant: true }
-      : { isMutant: false };
+    await this.statsService.save({ dna: dnaCode.dna, isMutant });
+
+    return isMutant;
   }
 
   private hasMutantSequence(dnaMatrix: string[][]): boolean {
