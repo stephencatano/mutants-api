@@ -1,9 +1,4 @@
-import { IsBoolean, IsArray, IsString, Matches } from 'class-validator';
-
-export class MutantResponseDTO {
-  @IsBoolean()
-  isMutant: boolean;
-}
+import { IsArray, IsString, Matches } from 'class-validator';
 
 export class DnaCodeDTO {
   @IsArray()

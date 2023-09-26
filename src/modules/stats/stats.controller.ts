@@ -14,7 +14,7 @@ export class StatsController extends LoggerService {
   async getStatsOfMutants(
     @Headers('trace_id') traceId: string,
     @Res() response,
-  ): Promise<StatsResponseDTO> {
+  ): Promise<any> {
     try {
       const stats: StatsResponseDTO =
         await this.statsService.getStatsOfMutants();

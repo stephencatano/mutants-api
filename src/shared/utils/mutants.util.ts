@@ -9,10 +9,10 @@ export const calcStatsOfMutants = (
   stats: StatsOfMutantsEntity[],
 ): StatsResponseDTO => {
   const mutants: StatsOfMutantsEntity[] = stats.filter(
-    (stat) => stat?.is_mutant,
+    (stat) => stat.is_mutant,
   );
   const humans: StatsOfMutantsEntity[] = stats.filter(
-    (stat) => !stat?.is_mutant,
+    (stat) => !stat.is_mutant,
   );
   const ratio: number =
     mutants.length === 0

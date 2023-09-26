@@ -3,7 +3,7 @@ import { Body, Controller, Post, Headers, Res } from '@nestjs/common';
 import { LoggerService } from '@shared/logger/logger.service';
 import { SERVICE_ERROR } from '@config/errors.enum';
 import { MutantsService } from './mutants.service';
-import { DnaCodeDTO, MutantResponseDTO } from './mutants.dto';
+import { DnaCodeDTO } from './mutants.dto';
 
 @Controller('mutant')
 export class MutantsController extends LoggerService {
@@ -16,7 +16,7 @@ export class MutantsController extends LoggerService {
     @Headers('trace_id') traceId: string,
     @Body() dnaCode: DnaCodeDTO,
     @Res() response,
-  ): Promise<MutantResponseDTO> {
+  ): Promise<any> {
     try {
       const isMutant: boolean =
         await this.mutantsService.validateDnaCode(dnaCode);
